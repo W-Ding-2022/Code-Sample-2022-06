@@ -10,7 +10,7 @@ import math
 
 def main():
     
-    scale = 1		# scale down the atomic displacements, 100% - no scale down;
+    scale = 1			# scale down the atomic displacements, 100% - no scale down;
 
     pi = math.pi
     h    = 6.626        	# (10^-34) J*s, Planck Constant
@@ -30,11 +30,11 @@ def main():
     print "A = %.5f Angstrom\n"%A
 
 # Test code 2:    
-    mass = 50.0		# atom mass in units of c_ma          
+    mass = 50.0						# atom mass in units of c_ma          
     mass_kg = mass * c_ma
-    E = 30.0		# phonon frequency in meV 
+    E = 30.0						# phonon frequency in meV 
     h_1_bar = h_1/(2*pi)
-    w = E/1000 / h_1_bar * 1000 	# ph-frequency (angular) in THz
+    w = E/1000 / h_1_bar * 1000 			# ph-frequency (angular) in THz
     f = w/(2*pi)
     h_bar = h/(2*pi)
     A = math.sqrt(10* h_bar/(2*mass_kg*w)) 		# in unit of Angstrom
@@ -71,8 +71,8 @@ def main():
     	freq.append(data['phonon'][nq]['band'][i]['frequency']) 	# nq = 0, Gamma point
 	eig_vec.append(data['phonon'][nq]['band'][i]['eigenvector'])
 
-    freq_thz = np.array(freq)  			# Phonon frequency (not angular) in THz
-    freq_meV = freq_thz * h_1			# convert to meV	
+    freq_thz = np.array(freq)  						# Phonon frequency (not angular) in THz
+    freq_meV = freq_thz * h_1						# convert to meV	
     print "Frequencies of phonon modes at Gamma:\n Phonon modes\t THz, \t meV"
     for i in range(len(freq_thz)):
         print "%d\t\t %.2f,\t %.2f"%(i+1, freq_thz[i], freq_meV[i])
@@ -80,7 +80,7 @@ def main():
     u_atom_w = [] 	# atomic displacement for each atom at each phonon frequencies.
     for nb in range(nbands):
         s=[]        
-        w = freq_thz[nb] * (2*pi)		# Phonon frequency in THz (angular)
+        w = freq_thz[nb] * (2*pi)					# Phonon frequency in THz (angular)
 	for na in range(natom):
 	    mass = atom_ms[na] 
 	    mass_kg = mass * c_ma
@@ -98,8 +98,8 @@ def main():
     disp_cord = []			# displacements in A
     disp_frac = []			# displacements in fractional coordinates
     for nb in range(len(eig_vec)):
-        disp_tmp = []		# temporary displacements in A
-        disp_tmp1 = []		# temporary displacements in frac
+        disp_tmp = []			# temporary displacements in A
+        disp_tmp1 = []			# temporary displacements in frac
 	print "phonon band:", nb+1
     	for na in range(len(eig_vec[nb])):
 	    A = u_atom_w[nb][na] * scale
